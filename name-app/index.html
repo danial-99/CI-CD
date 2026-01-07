@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeHub - Platform for Developers</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Landing Section -->
+        <div class="landing-section" id="landing">
+            <nav class="navbar">
+                <div class="logo">
+                    <span class="code-bracket">&lt;</span>
+                    <span>CodeHub</span>
+                    <span class="code-bracket">/&gt;</span>
+                </div>
+                <div class="nav-buttons">
+                    <button class="btn-secondary" onclick="showAuth('login')">Login</button>
+                    <button class="btn-primary" onclick="showAuth('signup')">Sign Up</button>
+                </div>
+            </nav>
+
+            <main class="hero">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Build. Code. <span class="highlight">Deploy.</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        The ultimate platform for developers to collaborate, learn, and ship amazing projects.
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="btn-primary btn-large" onclick="showAuth('signup')">
+                            Get Started Free
+                        </button>
+                        <button class="btn-secondary btn-large" onclick="scrollToFeatures()">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-code">
+                    <div class="code-window">
+                        <div class="code-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <pre class="code-content"><code><span class="keyword">const</span> <span class="variable">developer</span> = {
+  <span class="property">name</span>: <span class="string">'You'</span>,
+  <span class="property">skills</span>: [<span class="string">'JavaScript'</span>, <span class="string">'Python'</span>, <span class="string">'React'</span>],
+  <span class="property">build</span>: <span class="keyword">async</span> () => {
+    <span class="keyword">return await</span> <span class="function">createAwesomeApp</span>();
+  }
+};
+
+<span class="variable">developer</span>.<span class="function">build</span>();</code></pre>
+                    </div>
+                </div>
+            </main>
+
+            <section class="features" id="features">
+                <h2>Why Developers Choose Us</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Lightning Fast</h3>
+                        <p>Deploy your code in seconds with our optimized infrastructure</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔧</div>
+                        <h3>Developer Tools</h3>
+                        <p>Integrated IDE, debugging tools, and version control</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌐</div>
+                        <h3>Global Community</h3>
+                        <p>Connect with millions of developers worldwide</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Auth Section -->
+        <div class="auth-section hidden" id="authSection">
+            <div class="auth-container">
+                <button class="back-button" onclick="hideAuth()">← Back</button>
+                
+                <!-- Login Form -->
+                <div class="auth-form" id="loginForm">
+                    <h2>Welcome Back</h2>
+                    <p class="auth-subtitle">Login to continue coding</p>
+                    
+                    <form onsubmit="handleLogin(event)">
+                        <div class="form-group">
+                            <label for="loginEmail">Email</label>
+                            <input type="email" id="loginEmail" placeholder="developer@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <input type="password" id="loginPassword" placeholder="••••••••" required>
+                        </div>
+                        <button type="submit" class="btn-primary btn-full">Login</button>
+                    </form>
+                    
+                    <p class="auth-switch">
+                        Don't have an account? 
+                        <a href="#" onclick="showAuth('signup'); return false;">Sign up</a>
+                    </p>
+                </div>
+
+                <!-- Signup Form -->
+                <div class="auth-form hidden" id="signupForm">
+                    <h2>Join CodeHub</h2>
+                    <p class="auth-subtitle">Start your coding journey today</p>
+                    
+                    <form onsubmit="handleSignup(event)">
+                        <div class="form-group">
+                            <label for="signupName">Full Name</label>
+                            <input type="text" id="signupName" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupEmail">Email</label>
+                            <input type="email" id="signupEmail" placeholder="developer@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupPassword">Password</label>
+                            <input type="password" id="signupPassword" placeholder="••••••••" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupRole">I am a...</label>
+                            <select id="signupRole" required>
+                                <option value="">Select your role</option>
+                                <option value="frontend">Frontend Developer</option>
+                                <option value="backend">Backend Developer</option>
+                                <option value="fullstack">Full Stack Developer</option>
+                                <option value="mobile">Mobile Developer</option>
+                                <option value="devops">DevOps Engineer</option>
+                                <option value="student">Student</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-primary btn-full">Create Account</button>
+                    </form>
+                    
+                    <p class="auth-switch">
+                        Already have an account? 
+                        <a href="#" onclick="showAuth('login'); return false;">Login</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
