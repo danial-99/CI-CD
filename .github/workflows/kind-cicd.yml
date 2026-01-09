@@ -28,12 +28,12 @@ jobs:
 
       - name: Deploy to Kubernetes
         run: |
-          kubectl create namespace ${{ github.ref_name }} || true
+          kubectl create namespace ${{ github.ref_name }}
 
-          sed "s/IMAGE_TAG/${{ github.ref_name }}/g" k8s/deployment.yaml \
+          sed "s/IMAGE_TAG/${{ github.ref_name }}/g" k8s/deployment.yml \
           | kubectl apply -n ${{ github.ref_name }} -f -
 
-          kubectl apply -n ${{ github.ref_name }} -f k8s/service.yaml
+          kubectl apply -n ${{ github.ref_name }} -f k8s/service.yml
 
       - name: Verify deployment
         run: |
