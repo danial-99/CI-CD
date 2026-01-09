@@ -6,11 +6,17 @@ on:
 
 jobs:
   deploy:
-    runs-on: [self-hosted, agent-1]
+    runs-on: self-hosted
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Show runner info
+        run: |
+          echo "Running on $(hostname)"
+          docker version
+          kubectl get nodes
 
       - name: Build Docker image
         run: |
@@ -28,3 +34,8 @@ jobs:
           | kubectl apply -n ${{ github.ref_name }} -f -
 
           kubectl apply -n ${{ github.ref_name }} -f k8s/service.yaml
+
+      - name: Verify deployment
+        run: |
+          kubectl get pods -n ${{ github.ref_name }}
+          kubectl get svc -n ${{ github.ref_name }}
