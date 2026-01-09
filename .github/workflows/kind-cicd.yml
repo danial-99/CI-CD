@@ -20,16 +20,15 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t landing-page:${{ github.ref_name }} .
+          docker build -t landing-page:${{ github.sha }} .
 
       - name: Load image into KinD
         run: |
-          kind load docker-image landing-page:${{ github.ref_name }} --name cicd-cluster
+          kind load docker-image landing-page:${{ github.sha }} --name cicd-cluster
 
       - name: Deploy to Kubernetes
         run: |
-
-          sed "s/IMAGE_TAG/${{ github.ref_name }}/g" k8s/deployment.yml \
+          sed "s/IMAGE_TAG/${{ github.sha }}/g" k8s/deployment.yml \
           | kubectl apply -n ${{ github.ref_name }} -f -
 
           kubectl apply -n ${{ github.ref_name }} -f k8s/service.yml
