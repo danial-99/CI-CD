@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: landing-page-ingress
+  namespace: NAMESPACE_PLACEHOLDER   # This will be replaced with dev, stage, prod
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - path: /PATH_PLACEHOLDER     # This will be replaced with dev, stage, prod
+            pathType: Prefix
+            backend:
+              service:
+                name: landing-page
+                port:
+                  number: 80

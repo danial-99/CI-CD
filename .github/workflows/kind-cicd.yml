@@ -28,12 +28,20 @@ jobs:
 
       - name: Deploy to Kubernetes
         run: |
+          # Deploy deployment with dynamic image tag
           sed "s/IMAGE_TAG/${{ github.sha }}/g" k8s/deployment.yml \
           | kubectl apply -n ${{ github.ref_name }} -f -
 
+          # Deploy service
           kubectl apply -n ${{ github.ref_name }} -f k8s/service.yml
+
+          # Deploy Ingress dynamically with branch-based namespace and path
+          sed "s/NAMESPACE_PLACEHOLDER/${{ github.ref_name }}/g; s/PATH_PLACEHOLDER/${{ github.ref_name }}/g" k8s/ingress.yml \
+          | kubectl apply -n ${{ github.ref_name }} -f -
 
       - name: Verify deployment
         run: |
           kubectl get pods -n ${{ github.ref_name }}
           kubectl get svc -n ${{ github.ref_name }}
+          kubectl get ingress -n ${{ github.ref_name }}
+
