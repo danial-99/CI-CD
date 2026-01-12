@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>CodeHub - Platform for Developers</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/PATH_PLACEHOLDER/styles.css" />
 </head>
 <body>
     <div class="container">
@@ -13,11 +13,7 @@
             <nav class="navbar">
                 <div class="logo">
                     <span class="code-bracket">&lt;</span>
-<<<<<<< HEAD
-                    <span></span>
-=======
                     <span>Code.</span>
->>>>>>> dev
                     <span class="code-bracket">/&gt;</span>
                 </div>
                 <div class="nav-buttons">
@@ -50,15 +46,16 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <pre class="code-content"><code><span class="keyword">const</span> <span class="variable">developer</span> = {
-  <span class="property">name</span>: <span class="string">'You'</span>,
-  <span class="property">skills</span>: [<span class="string">'JavaScript'</span>, <span class="string">'Python'</span>, <span class="string">'React'</span>],
-  <span class="property">build</span>: <span class="keyword">async</span> () => {
-    <span class="keyword">return await</span> <span class="function">createAwesomeApp</span>();
+                        <pre class="code-content"><code>
+const developer = {
+  name: 'You',
+  skills: ['JavaScript', 'Python', 'React'],
+  build: async () => {
+    return await createAwesomeApp();
   }
 };
-
-<span class="variable">developer</span>.<span class="function">build</span>();</code></pre>
+developer.build();
+                        </code></pre>
                     </div>
                 </div>
             </main>
@@ -98,11 +95,11 @@
                     <form onsubmit="handleLogin(event)">
                         <div class="form-group">
                             <label for="loginEmail">Email</label>
-                            <input type="email" id="loginEmail" placeholder="developer@example.com" required>
+                            <input type="email" id="loginEmail" placeholder="developer@example.com" required />
                         </div>
                         <div class="form-group">
                             <label for="loginPassword">Password</label>
-                            <input type="password" id="loginPassword" placeholder="••••••••" required>
+                            <input type="password" id="loginPassword" placeholder="••••••••" required />
                         </div>
                         <button type="submit" class="btn-primary btn-full">Login</button>
                     </form>
@@ -121,15 +118,15 @@
                     <form onsubmit="handleSignup(event)">
                         <div class="form-group">
                             <label for="signupName">Full Name</label>
-                            <input type="text" id="signupName" placeholder="John Doe" required>
+                            <input type="text" id="signupName" placeholder="John Doe" required />
                         </div>
                         <div class="form-group">
                             <label for="signupEmail">Email</label>
-                            <input type="email" id="signupEmail" placeholder="developer@example.com" required>
+                            <input type="email" id="signupEmail" placeholder="developer@example.com" required />
                         </div>
                         <div class="form-group">
                             <label for="signupPassword">Password</label>
-                            <input type="password" id="signupPassword" placeholder="••••••••" required>
+                            <input type="password" id="signupPassword" placeholder="••••••••" required />
                         </div>
                         <div class="form-group">
                             <label for="signupRole">I am a...</label>
@@ -155,7 +152,6 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="/PATH_PLACEHOLDER/script.js"></script>
 </body>
 </html>
-<!-- Pipeline test -->
