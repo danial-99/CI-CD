@@ -20,28 +20,36 @@ jobs:
 
       - name: Build Docker image
         run: |
+          # Build the Docker image tagged with the Git SHA
           docker build -t landing-page:${{ github.sha }} .
 
       - name: Load image into KinD
         run: |
+          # Load the Docker image into the local KinD cluster
           kind load docker-image landing-page:${{ github.sha }} --name cicd-cluster
 
-      - name: Deploy to Kubernetes
+      - name: Deploy Deployment and Service
         run: |
-          # Deploy deployment with dynamic image tag
+          # Replace IMAGE_TAG in deployment.yml and apply it to the correct namespace
           sed "s/IMAGE_TAG/${{ github.sha }}/g" k8s/deployment.yml \
           | kubectl apply -n ${{ github.ref_name }} -f -
-
-          # Deploy service
+          
+          # Apply service.yml in the same namespace
           kubectl apply -n ${{ github.ref_name }} -f k8s/service.yml
 
-          # Deploy Ingress dynamically with branch-based namespace and path
+      - name: Deploy Ingress dynamically
+        run: |
+          # Replace placeholders in ingress.yml with branch-specific namespace and path
           sed "s/NAMESPACE_PLACEHOLDER/${{ github.ref_name }}/g; s/PATH_PLACEHOLDER/${{ github.ref_name }}/g" k8s/ingress.yml \
           | kubectl apply -n ${{ github.ref_name }} -f -
 
-      - name: Verify deployment
+      - name: Verify Deployment
         run: |
+          echo "Pods in namespace ${{ github.ref_name }}:"
           kubectl get pods -n ${{ github.ref_name }}
+          
+          echo "Services in namespace ${{ github.ref_name }}:"
           kubectl get svc -n ${{ github.ref_name }}
+          
+          echo "Ingress in namespace ${{ github.ref_name }}:"
           kubectl get ingress -n ${{ github.ref_name }}
-
